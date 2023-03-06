@@ -19,16 +19,13 @@ return new class extends Migration
             $table->char('nis', 8);
             $table->string('nama', 35);
             $table->string('password');
-
-            $table->unsignedBigInteger('id_kelas');
-            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
-
             $table->text('alamat');
             $table->string('no_telp', 13);
 
-            $table->unsignedBigInteger('id_spp');
-            $table->foreign('id_spp')->references('id')->on('spps')->onDelete('cascade')->onUpdate('cascade');
-
+            //aturannya
+            // tableName_id
+            $table->foreignId('kelas_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('spp_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
